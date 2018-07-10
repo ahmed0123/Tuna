@@ -2,4 +2,9 @@ changes to third
 
 new line in the hotfixs branch
 
+<<<<<<< HEAD
 this is new development data
+=======
+this is some edits in amster branch
+test for 3 way merge
+>>>>>>> feature
