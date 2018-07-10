@@ -1,0 +1,100 @@
+AbstractXMPPConnection connection = new XMPPTCPConnection(conf);
+connection.connect(); // Here we create the connection
+
+// Now we create the account:
+AccountManager accountManager = AccountManager.getInstance(connection);
+accountManager.createAccount(username, password);
+
+// The account has been created, so we can now login
+connection.login(username, password);
+------------------------------------------------------------------------------
+ AccountManager am = connection.getAccountManager();
+                     Map<String, String> attributes = new HashMap<String, String>();
+                     attributes.put("username", username);
+                     attributes.put("password", password);
+                     attributes.put("email", email);
+                     attributes.put("name", name);
+                     try {
+                        am.createAccount(username, password,attributes);
+                         Toast.makeText(getActivity(),"User create: " + username,Toast.LENGTH_SHORT).show();
+
+                    } catch (XMPPException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+--------------------------------------------------------------------------------
+ccountManager accountManager = AccountManager.getInstance(connection);
+                try {
+                    if (accountManager.supportsAccountCreation()) {
+                        accountManager.sensitiveOperationOverInsecureConnection(true);
+                        accountManager.createAccount("userName", "password");
+
+                    }
+--------------------------------------------------------------------------------
+/ Creating a connection
+XMPPTCPConnectionConfiguration connConfig =
+        XMPPTCPConnectionConfiguration.builder()
+                .setHost("myHost.com")  // Name of your Host
+                .setSecurityMode(ConnectionConfiguration.SecurityMode.disabled)
+                .setPort(5222)          // Your Port for accepting c2s connection
+                .setDebuggerEnabled(true)
+                .setServiceName("myServiceName")
+                .build();
+AbstractXMPPConnection connection = new XMPPTCPConnection(connConfig);
+
+try {
+    // connecting...
+    connection.connect();
+    Log.i("TAG", "Connected to " + connection.getHost());
+
+    // Registering the user
+    AccountManager accountManager = AccountManager.getInstance(connection);
+    accountManager.sensitiveOperationOverInsecureConnection(true);
+    accountManager.createAccount(username, password);   // Skipping optional fields like email, first name, last name, etc..
+} catch (SmackException | IOException | XMPPException e) {
+    Log.e("TAG", e.getMessage());
+    xmppClient.setConnection(null);
+}
+--------------------------------------------------------------------------------
+  XMPPTCPConnectionConfiguration.Builder config = XMPPTCPConnectionConfiguration
+                    .builder();
+            config.setSecurityMode(ConnectionConfiguration.SecurityMode.disabled);
+            config.setServiceName("nouman.test");
+            config.setHost(serverAddress);
+            config.setPort(5222);
+            config.setDebuggerEnabled(true);
+            XMPPTCPConnection.setUseStreamManagementResumptiodDefault(true);
+            XMPPTCPConnection.setUseStreamManagementDefault(true);
+            config.setSendPresence(true);
+            config.setDebuggerEnabled(true);
+            config.setSendPresence(true);
+            config.setCompressionEnabled(false);
+            connection = new XMPPTCPConnection(config.build());
+            connection.connect();
+
+
+ AccountManager accountManager = AccountManager.getInstance(connection);
+        Map<String, String> attributes = new HashMap<>();
+        attributes.put("name", "full_name");
+        attributes.put("email", "email");
+        try {
+            if (accountManager.supportsAccountCreation()) {
+                accountManager.sensitiveOperationOverInsecureConnection(true);
+                accountManager.createAccount("username","password", attributes);
+                isAccountCreated = true;
+            }
+        } catch (Exception e) {
+            //TODO : Case 409 or Message conflict is the case of username exist handle the case
+            LogUtil.printStackTrace(e);
+        }
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
