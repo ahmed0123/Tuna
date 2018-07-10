@@ -1,3 +1,6 @@
 changes to third
 
 new line in the hotfixs branch
+
+this is some edits in amster branch
+test for 3 way merge
